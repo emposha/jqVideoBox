@@ -1,0 +1,45 @@
+<html>
+<head>
+<title>jqVideobox: Lightbox for videos, Youtube, Metacafe, Google Video, iFilm</title>
+<link rel="stylesheet" href="css/jqvideobox.css" type="text/css" />
+
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/swfobject.js"></script>
+<script type="text/javascript" src="js/jqvideobox.js"></script>
+
+<style type="text/css">
+a:link, a:visited {
+	color: #54CF00;
+	text-decoration: none;
+}
+
+a img {
+	border: 1px solid #e7e7e7;
+	padding: 5px;
+}
+p
+{
+	text-align:center;
+}
+</style>
+
+
+</head>
+<body>
+<p>
+
+	<a title="Youtube example." class="vidbox" href="http://www.youtube.com/v/NRH2jEyiiLo&hl=en&fs=1&rel=0"><img alt="Youtube" style="width: 130px;" src="http://i2.ytimg.com/vi/NRH2jEyiiLo/default.jpg"/></a>
+	<a title="Metacafe example." class="vidbox" href="http://www.metacafe.com/watch/386357/teach_magic_be_magician_money_magic/"><img alt="Metacafe" style="width: 130px;" src="http://images.metacafe.com/thumb/386357/2767198/4/catalog_top_item5/0/teach_magic_be_magician_money_magic.jpg"/></a>
+	<a title="Google Video example." class="vidbox" href="http://video.google.com/videoplay?docid=1811233136844420765"><img alt="Google Video" style="width: 130px;" src="http://video.google.com/ThumbnailServer2?app=vss&amp;contentid=d53e613f82f74c96&amp;offsetms=50000&amp;itag=w160&amp;lang=en&amp;sigh=QGtXRNh3rW4hfa6DSQSFtfOimno"/></a>
+	<a title="iFilm example." class="vidbox" href="http://www.ifilm.com/video/2783985"><img alt="iFilm" style="width: 130px;" src="http://img4.ifilmpro.com/resize/image/stills/films/resize/istd/2783985.jpg?width=130"/></a>
+</p>
+<script>
+$(document).ready(
+	function()
+	{
+		$(".vidbox").jqvideobox();
+	}
+);
+</script>
+</body>
+</html>
