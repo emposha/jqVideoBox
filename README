@@ -1,0 +1,20 @@
+/*
+ jqVideoBox 1.00
+ - Jquery version required: 1.2.x, 1.3.x
+ 
+ Changelog:
+ 
+ - 1.00 ported from mootools plugin videbox (http://videobox-lb.sourceforge.net/) to jquery
+ */
+ 
+ /* Coded by: emposha <admin@emposha.com> */
+/* Copyright: Emposha.com <http://www.emposha.com/> - Distributed under MIT - Keep this message! */
+/*
+ * initialWidth        - Initial width of the box
+ * initialHeight       - Initial height of the box
+ * defaultWidth        - Default width of the box
+ * defaultHeight       - Default height of the box
+ * animateCaption      - Enable/Disable caption animation
+ * defaultOverLayFade  - Default overlay fade value
+ * flvplayer  	       - Path to default flash player
+ */
