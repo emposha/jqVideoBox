@@ -1,20 +1,30 @@
 /*
- jqVideoBox 1.00
- - Jquery version required: 1.2.x, 1.3.x
- 
+ jqVideoBox 1.50
+ - Jquery version required: 1.2.x - 1.6.0
+ - SWFObject version required: v2.x
+
  Changelog:
- 
+ - 1.5 added support for dailymotion.com, blip.tv, revver.com, veoh.com, vimeo.com
+   added paging in specific group
+   some minor fixes
+   swfobject 2.x support added
+  
  - 1.00 ported from mootools plugin videbox (http://videobox-lb.sourceforge.net/) to jquery
  */
- 
- /* Coded by: emposha <admin@emposha.com> */
+
+/* Coded by: emposha <admin@emposha.com> */
 /* Copyright: Emposha.com <http://www.emposha.com/> - Distributed under MIT - Keep this message! */
+
 /*
- * initialWidth        - Initial width of the box
- * initialHeight       - Initial height of the box
- * defaultWidth        - Default width of the box
- * defaultHeight       - Default height of the box
+ * Main idea and concept mootools plugin videbox (http://videobox-lb.sourceforge.net/)
+ */
+
+/*
+ * width               - Width of the lightbox
+ * height              - Height of the lightbox
  * animateCaption      - Enable/Disable caption animation
  * defaultOverLayFade  - Default overlay fade value
- * flvplayer  	       - Path to default flash player
+ * flvplayer           - Path to default flash player
+ * getimage            - Get image from service
+ * navigation          - Activate navigation
  */

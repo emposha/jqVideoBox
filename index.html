@@ -1,26 +1,16 @@
-<html>
+﻿<html>
 <head>
-<title>jqVideobox: Lightbox for videos, Youtube, Metacafe, Google Video, iFilm</title>
+<title>jqVideobox: Lightbox for videos, Youtube, Metacafe, Google Video</title>
 <link rel="stylesheet" href="css/jqvideobox.css" type="text/css" />
-
-<script type="text/javascript" src="js/jquery.js"></script>
-<script type="text/javascript" src="js/swfobject.js"></script>
-<script type="text/javascript" src="js/jqvideobox.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.min.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="js/swfobject.js" charset="utf-8"></script>
+<script type="text/javascript" src="js/jqvideobox.js" charset="utf-8"></script>
 
 <style type="text/css">
-a:link, a:visited {
-	color: #54CF00;
-	text-decoration: none;
-}
-
-a img {
-	border: 1px solid #e7e7e7;
-	padding: 5px;
-}
-p
-{
-	text-align:center;
-}
+  a:link, a:visited {color: #54CF00;text-decoration: none;}
+  a img {border: 1px solid #e7e7e7;padding: 5px;}
+  p {text-align:center;}
 </style>
 
 
@@ -28,17 +18,21 @@ p
 <body>
 <p>
 
-	<a title="Youtube example." class="vidbox" href="http://www.youtube.com/v/NRH2jEyiiLo&hl=en&fs=1&rel=0"><img alt="Youtube" style="width: 130px;" src="http://i2.ytimg.com/vi/NRH2jEyiiLo/default.jpg"/></a>
-	<a title="Metacafe example." class="vidbox" href="http://www.metacafe.com/watch/386357/teach_magic_be_magician_money_magic/"><img alt="Metacafe" style="width: 130px;" src="http://images.metacafe.com/thumb/386357/2767198/4/catalog_top_item5/0/teach_magic_be_magician_money_magic.jpg"/></a>
-	<a title="Google Video example." class="vidbox" href="http://video.google.com/videoplay?docid=1811233136844420765"><img alt="Google Video" style="width: 130px;" src="http://video.google.com/ThumbnailServer2?app=vss&amp;contentid=d53e613f82f74c96&amp;offsetms=50000&amp;itag=w160&amp;lang=en&amp;sigh=QGtXRNh3rW4hfa6DSQSFtfOimno"/></a>
-	<a title="iFilm example." class="vidbox" href="http://www.ifilm.com/video/2783985"><img alt="iFilm" style="width: 130px;" src="http://img4.ifilmpro.com/resize/image/stills/films/resize/istd/2783985.jpg?width=130"/></a>
+	<a title="Youtube example." class="vidbox" href="http://www.youtube.com/watch?v=TnH5D2qwvpc">Youtube</a>
+	<a title="Metacafe example." class="vidbox" href="http://www.metacafe.com/watch/386357/teach_magic_be_magician_money_magic/">Metacafe</a>
+	<a title="Google Video example." class="vidbox" href="http://video.google.com/videoplay?docid=-8998962137419844414&hl=en&emb=1">Google video</a>
+	<a title="Daylymotion example." class="vidbox" href="http://www.dailymotion.com/video/xiphw8_manchester-city-1-0-stoke-city-the-fa-cup-final-2011-14-05-11_sport#hp-sc-p-1">Dailymotion</a>
+	<a title="Blip.tv Video example." class="vidbox" href="http://blip.tv/play/AYKo4QwC">Blip.tv video</a>
+	<br />
+	<a title="Revver.com Video example." class="vidbox2" href="http://www.revver.com/video/632260/7-game-night/">Revver.com video</a>
+	<a title="Veoh.com Video example." class="vidbox2" href="http://www.veoh.com/watch/v20940261QypnC5gT">Veoh.com video</a>
+	<a title="Vimeo.com Video example." rel="200,100" class="vidbox2" href="http://vimeo.com/23266010">Vimeo.com video</a>	
 </p>
 <script>
-$(document).ready(
-	function()
-	{
-		$(".vidbox").jqvideobox();
-	}
+$(document).ready(function() {
+  $(".vidbox").jqvideobox({'initialWidth': 10, 'initialHeight': 10, 'defaultWidth' : 400, 'defaultHeight': 300, 'getimage': true, 'navigation': false});
+  $(".vidbox2").jqvideobox({'initialWidth': 10, 'initialHeight': 10, 'defaultWidth' : 300, 'defaultHeight': 300, 'getimage': true, 'navigation': true});
+}
 );
 </script>
 </body>
