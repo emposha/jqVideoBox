@@ -1,9 +1,12 @@
 ﻿/*
- jqVideoBox 1.50
+ jqVideoBox 1.51
  - Jquery version required: 1.2.x - 1.6.0
  - SWFObject version required: v2.x
 
  Changelog:
+ - 1.5.1 added support for smotri.com, vkontakte.ru(hash needed), rutube.ru, video.mail.ru, video.qip.ru
+   thumbl.in support added, fetching thumbnails from thumbl.in
+   
  - 1.5 added support for dailymotion.com, blip.tv, revver.com, veoh.com, vimeo.com
    added paging in specific group
    some minor fixes
@@ -27,6 +30,7 @@
  * flvplayer  	       - Path to default flash player
  * getimage		 	       - Get image from service
  * navigation          - Activate navigation
+ * thumblin            - fetch thumbnails from thumbl.in service (getimage need to be active, activated by default) 
  */
 
 jQuery( function ($) {
@@ -77,6 +81,12 @@ jQuery( function ($) {
         var href = element.attr('href');
         var path = title = '';
         
+        if (options.thumblin) {
+          var content = '<img src="http://www.thumbl.in/api/url/?url=' + href + '" style="width:100px; height:100px;">'
+          element.html(content);
+          return;
+        }
+        
         switch (getType(href)) {
           case 'youtube':
             var videoId = href.split('=');
@@ -92,10 +102,7 @@ jQuery( function ($) {
             var videoId = href.split('/');
             path = 'http://frame.revver.com/frame/120x90/'+videoId[4]+'.jpg';
             break;
-          case 'youporn':
-            var videoId = href.split('/');
-            var path = 'http://ss-2.youporn.com/screenshot/57/68/screenshot_multiple/'+videoId[4]+'/'+videoId[4]+'_multiple_1_large.jpg';
-            break;
+            
           default:
             title = element.text();
             path = 'css/video_icon.png';
@@ -164,6 +171,21 @@ jQuery( function ($) {
         else if (href.match(/vimeo\.com\//i)) {
           type = 'vimeo';
         }
+        else if (href.match(/smotri\.com\/video\/view/i)) {
+          type = 'smotri';
+        }
+        else if (href.match(/vkontakte\.ru\/video/i)) {
+          type = 'vkontakte';
+        }
+        else if (href.match(/rutube\.ru\/tracks/i)) {
+          type = 'rutube';
+        }
+        else if (href.match(/video\.mail\.ru\/inbox/i)) {
+          type = 'mailru';
+        }
+        else if (href.match(/video\.qip\.ru\/video/i)) {
+          type = 'qipru';
+        }
         else if (href.match(/\.mov/i)) {
           type = 'mov_file';
         }
@@ -193,22 +215,21 @@ jQuery( function ($) {
             curelement = i;
           }
         });
-        var attributes = setup(href);
+        var object = setup(href);
         top = $(window).scrollTop() + (($(window).height() / 2) - (options.height / 2));
         left= (($(window).width() / 2) - (options.width / 2));
         center.css({'top': top + 'px','left':  left + 'px','display': 'none','background': '#fff url(css/loading.gif) no-repeat center','height': options.contentsHeight,'width': options.contentsWidth});
         overlay.css('display','block').fadeTo("fast",options.defaultOverLayFade);
         caption.html(title);
-        center.fadeIn("slow", function() {insert(attributes);});
+        center.fadeIn("slow", function() {insert(object.attributes, object.params);});
         return false;
       }
 
-      function insert(attributes) {
+      function insert(attributes, params) {
         center.css('background','#fff');
         if (flash) {
           center.append('<div id="lbCenter_wraper"></div>');
           var attr = {'id': attributes.id, 'name': attributes.id};
-          var params = {'wmode': 'transparent'};
           var flashvars = false;
           swfobject.embedSWF(attributes.src, 'lbCenter_wraper', attributes.width, attributes.height, "9.0.0", "expressInstall.swf", flashvars, params, attributes);
         }
@@ -246,6 +267,7 @@ jQuery( function ($) {
         options.contentsHeight = (aDim && (aDim[1] > 0)) ? aDim[1] : options.height;
 
         var attributes = {'width': options.contentsWidth, 'height': options.contentsHeight, 'id': 'flvvideo'};
+        var params = {'wmode': 'transparent'};
         var  type = getType(href);
         switch (type) {
           case 'youtube':
@@ -272,22 +294,18 @@ jQuery( function ($) {
             other = '<iframe frameborder="0" width="' + options.contentsWidth + '" height="' + options.contentsHeight + '" src="http://www.dailymotion.com/embed/video/' + videoId + '?theme=none&wmode=transparent"></iframe>';
             break;
             
-          case 'blip':
+          case 'smotri':
             flash = true;
-            attributes.src = href;
+            var videoId = href.split('=');
+            attributes.src = 'http://pics.smotri.com/player.swf?file='+videoId[1]+'&bufferTime=3&autoStart=false&str_lang=rus&xmlsource=http%3A%2F%2Fpics.smotri.com%2Fcskins%2Fblue%2Fskin_color.xml&xmldatasource=http%3A%2F%2Fpics.smotri.com%2Fskin_ng.xml'
             break;
             
-          /*case 'myspace':
-            flash = true;
-            var videoId = href.split('/');
-            attributes.src = "http://player.hulu.com/embed/myspace_player_v002.swf?pid=50149139&embed=true&videoID=" + videoId[6];
+          case 'vkontakte':
+            flash = false;
+            var videoId = /video(.*?)_(.*?)($|\?)/ig.exec(href);
+            var hash = /hash=(.*?)($|&)/ig.exec(href);
+            other = '<iframe frameborder="0" width="' + options.contentsWidth + '" height="' + options.contentsHeight + '" src="http://vkontakte.ru/video_ext.php?oid=' + videoId[1] + '&id=' + videoId[2] + '&hash=' + hash[1] + '&hd=1"></iframe>';
             break;
-            
-          case 'hulu':
-            flash = true;
-            var videoId = href.split('/');
-            attributes.src = "http://player.hulu.com/embed/myspace_player_v002.swf?pid=50149139&embed=true&videoID=" + videoId[2];
-            break;*/
             
           case 'revver':
             flash = true;
@@ -305,6 +323,26 @@ jQuery( function ($) {
             flash = false;
             var videoId = href.split('/');
             other = '<iframe frameborder="0" width="' + options.contentsWidth + '" height="' + options.contentsHeight + '" src="http://player.vimeo.com/video/' + videoId[3] + '?title=0&byline=0&portrait=0"></iframe>';
+            break;
+            
+          case 'rutube':
+            flash = true;
+            var videoId = href.split('=');
+            attributes.src = "http://video.rutube.ru/" + videoId[1];
+            break;
+            
+          case 'mailru':
+            flash = true;
+            var videoId = href.split('/');
+            var number = videoId[6].split('.');
+            params.flashvars = 'movieSrc=inbox/' + videoId[4] + '/'+ videoId[5] + '/' + number[0];
+            attributes.src = attributes.data = params.movie = "http://img.mail.ru/r/video2/player_v2.swf";
+            break;
+            
+          case 'qipru':
+            flash = true;
+            var videoId = href.split('=');
+            attributes.src = 'http://pics.video.qip.ru/player.swf?file=' + videoId[1] + '&bufferTime=3&autoStart=false&str_lang=rus&xmlsource=http%3A%2F%2Fpics.video.qip.ru%2Fcskins%2Fqip%2Fskin_color.xml&xmldatasource=http%3A%2F%2Fpics.video.qip.ru%2Fskin_ng.xml'
             break;
             
           case 'mov_file':
@@ -331,18 +369,17 @@ jQuery( function ($) {
             attributes.src = videoID;
             break;
         }
-        return attributes;
+        return {'attributes' : attributes, 'params' : params};
       }
 
       var options = $.extend({
-        initialWidth: 250,		// Initial width of the box (px)
-        initialHeight: 250,		// Initial height of the box (px)
         width: 425,		// Default width of the box (px)
         height: 350,	// Default height of the box (px)
         animateCaption: true,	// Enable/Disable caption animation
         defaultOverLayFade: 0.8,	//Default overlay fade value
         getimage: false,
         navigation: false,
+        thumblin: true,
         flvplayer: 'swf/flvplayer.swf'
       }, opt);
 
