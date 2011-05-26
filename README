@@ -1,9 +1,11 @@
 /*
- jqVideoBox 1.51
+ jqVideoBox 1.52
  - Jquery version required: 1.2.x - 1.6.0
  - SWFObject version required: v2.x
 
  Changelog:
+ - 1.5.2 added support for gametrailers.com, myvideo.de, collegehumor.com, sevenload.com
+ 
  - 1.5.1 added support for smotri.com, vkontakte.ru(hash needed), rutube.ru, video.mail.ru, video.qip.ru
    thumbl.in support added, fetching thumbnails from thumbl.in
    

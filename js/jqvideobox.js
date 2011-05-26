@@ -1,9 +1,11 @@
 ﻿/*
- jqVideoBox 1.51
+ jqVideoBox 1.52
  - Jquery version required: 1.2.x - 1.6.0
  - SWFObject version required: v2.x
 
  Changelog:
+ - 1.5.2 added support for gametrailers.com, myvideo.de, collegehumor.com, sevenload.com
+ 
  - 1.5.1 added support for smotri.com, vkontakte.ru(hash needed), rutube.ru, video.mail.ru, video.qip.ru
    thumbl.in support added, fetching thumbnails from thumbl.in
    
@@ -186,6 +188,18 @@ jQuery( function ($) {
         else if (href.match(/video\.qip\.ru\/video/i)) {
           type = 'qipru';
         }
+        else if (href.match(/gametrailers\.com\/user-movie/i) || href.match(/gametrailers\.com\/video/i)) {
+          type = 'gametrailers';
+        }
+        else if (href.match(/myvideo\.de\/watch/i)) {
+          type = 'myvideode';
+        }
+        else if (href.match(/collegehumor\.com\/video/i)) {
+          type = 'collegehumor';
+        }
+        else if (href.match(/sevenload\.com\/shows/i)) {
+          type = 'sevenload';
+        }
         else if (href.match(/\.mov/i)) {
           type = 'mov_file';
         }
@@ -344,7 +358,38 @@ jQuery( function ($) {
             var videoId = href.split('=');
             attributes.src = 'http://pics.video.qip.ru/player.swf?file=' + videoId[1] + '&bufferTime=3&autoStart=false&str_lang=rus&xmlsource=http%3A%2F%2Fpics.video.qip.ru%2Fcskins%2Fqip%2Fskin_color.xml&xmldatasource=http%3A%2F%2Fpics.video.qip.ru%2Fskin_ng.xml'
             break;
+          
+          case 'gametrailers':
+            flash = true;
+            var videoId = href.split('/');
+            if (videoId[3] == 'video') {
+              attributes.src = 'http://media.mtvnservices.com/mgid:moses:video:gametrailers.com:' + videoId[5];
+            }
+            else {
+              attributes.src = 'http://media.mtvnservices.com/mgid:moses:usermovie:gametrailers.com:' + parseInt(videoId[5], 10);
+            }
+            break;
             
+          case 'myvideode':
+            flash = true;
+            var videoId = href.split('/');
+            attributes.src = 'http://www.myvideo.de/movie/' + videoId[4];
+            break;
+          
+          case 'collegehumor':
+            flash = true;
+            var videoId = href.split('/');
+            attributes.src = 'http://www.collegehumor.com/moogaloop/moogaloop.swf?clip_id=' + videoId[4] + '&use_node_id=true&fullscreen=1';
+            break;
+          
+          case 'sevenload':
+            flash = true;
+            var videoId = href.split('/');
+            var id = videoId[6].replace(/(.*?)-(.*)/,'$1');
+            params.flashvars = 'configPath=http%3A%2F%2Fflash.sevenload.com%2Fplayer%3FportalId%3Den%26autoplay%3D0%26mute%3D0%26itemId%3D' + id + '&locale=en_US&autoplay=0&environment=';
+            attributes.src = attributes.data = params.movie = "http://static.sevenload.net/swf/player/player.swf?v=142";
+            break;
+              
           case 'mov_file':
             flash = false;
             if (navigator.plugins && navigator.plugins.length) {
