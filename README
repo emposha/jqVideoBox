@@ -1,5 +1,5 @@
-/*
- jqVideoBox 1.52
+
+ jqVideoBox 1.52 is released under the MIT License <http://www.opensource.org/licenses/mit-license.php>
  - Jquery version required: 1.2.x - 1.6.0
  - SWFObject version required: v2.x
 
@@ -15,16 +15,9 @@
    swfobject 2.x support added
   
  - 1.00 ported from mootools plugin videbox (http://videobox-lb.sourceforge.net/) to jquery
- */
 
-/* Coded by: emposha <admin@emposha.com> */
-/* Copyright: Emposha.com <http://www.emposha.com/> - Distributed under MIT - Keep this message! */
+ Main idea and concept mootools plugin videbox (http://videobox-lb.sourceforge.net/)
 
-/*
- * Main idea and concept mootools plugin videbox (http://videobox-lb.sourceforge.net/)
- */
-
-/*
  * width               - Width of the lightbox
  * height              - Height of the lightbox
  * animateCaption      - Enable/Disable caption animation
@@ -33,4 +26,3 @@
  * getimage            - Get image from service
  * navigation          - Activate navigation
  * thumblin            - fetch thumbnails from thumbl.in service (getimage need to be active, activated by default) 
- */
