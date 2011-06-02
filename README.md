@@ -9,12 +9,13 @@ Main idea and concept mootools plugin videbox (http://videobox-lb.sourceforge.ne
 Requirements
 ------------
 Jquery version required: 1.2.x - 1.6.0
+
 SWFObject version required: v2.x
 
 Usage
 -----
 To activate jqVideoBox:
-$("elem").jqvideobox();
+$ $("elem").jqvideobox();
 
 Options
 -------
