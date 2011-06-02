@@ -15,6 +15,7 @@ SWFObject version required: v2.x
 Usage
 -----
 To activate jqVideoBox:
+
     $("elem").jqvideobox();
 
 Options
