@@ -39,10 +39,10 @@ jQuery( function ($) {
           _bottom.append(_close).append(_caption).append(_number).append(_clear);
           _bottomContainer.append(_bottom);
           
-          $("body").append(_overlay).append(_center).append(_bottomContainer)
+          $("body").append(_overlay).append(_center).append(_bottomContainer);
           if (!options.navigation) {
             _prevlink.hide();
-            _nextlink.hide(); 
+            _nextlink.hide();
           }
           _overlay.append(_prevlink).append(_nextlink); 
         }
@@ -53,9 +53,7 @@ jQuery( function ($) {
         bottomContainer = $("#lbBottomContainer");
         prevlink = $("#lbPrevLink");
         nextlink = $("#lbNextLink");
-        
         element.click(activate);
-        
         if (options.getimage) {
           getImage();
         }
@@ -66,7 +64,7 @@ jQuery( function ($) {
         var path = title = '';
         
         if (options.thumblin) {
-          var content = '<img src="http://www.thumbl.in/api/url/?url=' + href + '" style="width:100px; height:100px;">'
+          var content = '<img src="http://www.thumbl.in/api/url/?url=' + href + '" style="width:100px; height:100px;">';
           element.html(content);
           return;
         }
@@ -94,7 +92,7 @@ jQuery( function ($) {
         }
         
         if (path) {
-          var content = '<img src="' + path + '" style="width:100px; height:100px;">'
+          var content = '<img src="' + path + '" style="width:100px; height:100px;">';
           if (title)  {
             element.css('position', 'relative');
             content += '<span class="lbImageCaption">'+title+'</span>';
@@ -231,10 +229,8 @@ jQuery( function ($) {
         }
         else {
           center.html(other);
-        }
-        
+        }        
         bottomContainer.css({'top': (top + center.height() + 10) + "px",'left': center.css('left'),'width': options.contentsWidth+'px'});
-        
         if (options.animateCaption) {
           bottomContainer.slideDown('slow');
         } else {
@@ -267,9 +263,9 @@ jQuery( function ($) {
         var  type = getType(href);
         switch (type) {
           case 'youtube':
-              flash = true;
+              flash = false;
               var videoId = href.split('=');
-              attributes.src = "http://www.youtube.com/v/" + videoId[1];
+              other = '<iframe frameborder="0" width="' + options.contentsWidth + '" height="' + options.contentsHeight + '" src="http://www.youtube.com/embed/' + videoId[1] + '"></iframe>';
             break;
             
           case 'metacafe':
@@ -293,7 +289,7 @@ jQuery( function ($) {
           case 'smotri':
             flash = true;
             var videoId = href.split('=');
-            attributes.src = 'http://pics.smotri.com/player.swf?file='+videoId[1]+'&bufferTime=3&autoStart=false&str_lang=rus&xmlsource=http%3A%2F%2Fpics.smotri.com%2Fcskins%2Fblue%2Fskin_color.xml&xmldatasource=http%3A%2F%2Fpics.smotri.com%2Fskin_ng.xml'
+            attributes.src = 'http://pics.smotri.com/player.swf?file='+videoId[1]+'&bufferTime=3&autoStart=false&str_lang=rus&xmlsource=http%3A%2F%2Fpics.smotri.com%2Fcskins%2Fblue%2Fskin_color.xml&xmldatasource=http%3A%2F%2Fpics.smotri.com%2Fskin_ng.xml';
             break;
             
           case 'vkontakte':
@@ -338,7 +334,7 @@ jQuery( function ($) {
           case 'qipru':
             flash = true;
             var videoId = href.split('=');
-            attributes.src = 'http://pics.video.qip.ru/player.swf?file=' + videoId[1] + '&bufferTime=3&autoStart=false&str_lang=rus&xmlsource=http%3A%2F%2Fpics.video.qip.ru%2Fcskins%2Fqip%2Fskin_color.xml&xmldatasource=http%3A%2F%2Fpics.video.qip.ru%2Fskin_ng.xml'
+            attributes.src = 'http://pics.video.qip.ru/player.swf?file=' + videoId[1] + '&bufferTime=3&autoStart=false&str_lang=rus&xmlsource=http%3A%2F%2Fpics.video.qip.ru%2Fcskins%2Fqip%2Fskin_color.xml&xmldatasource=http%3A%2F%2Fpics.video.qip.ru%2Fskin_ng.xml';
             break;
           
           case 'gametrailers':
@@ -383,7 +379,7 @@ jQuery( function ($) {
             
           case 'wmv_file':
             flash = false;
-            other = '<object NAME="Player" WIDTH="'+options.contentsWidth+'" HEIGHT="'+options.contentsHeight+'" align="left" hspace="0" type="application/x-oleobject" CLASSID="CLSID:6BF52A52-394A-11d3-B153-00C04F79FAA6"><param NAME="URL" VALUE="'+sLinkHref+'"><param><param NAME="AUTOSTART" VALUE="false"></param><param name="showControls" value="true"></param><embed WIDTH="'+options.contentsWidth+'" HEIGHT="'+options.contentsHeight+'" align="left" hspace="0" SRC="'+sLinkHref+'" TYPE="application/x-oleobject" AUTOSTART="false"></embed></object>'
+            other = '<object NAME="Player" WIDTH="'+options.contentsWidth+'" HEIGHT="'+options.contentsHeight+'" align="left" hspace="0" type="application/x-oleobject" CLASSID="CLSID:6BF52A52-394A-11d3-B153-00C04F79FAA6"><param NAME="URL" VALUE="'+sLinkHref+'"><param><param NAME="AUTOSTART" VALUE="false"></param><param name="showControls" value="true"></param><embed WIDTH="'+options.contentsWidth+'" HEIGHT="'+options.contentsHeight+'" align="left" hspace="0" SRC="'+sLinkHref+'" TYPE="application/x-oleobject" AUTOSTART="false"></embed></object>';
             break;
             
           case 'flv_file':
