@@ -1,5 +1,5 @@
 ﻿/**
- jqVideoBox 1.52 is released under the MIT License <http://www.opensource.org/licenses/mit-license.php>
+ jqVideoBox 1.5.3 is released under the MIT License <http://www.opensource.org/licenses/mit-license.php>
  - Jquery version required: 1.2.x - 1.6.0
  - SWFObject version required: v2.x
 */

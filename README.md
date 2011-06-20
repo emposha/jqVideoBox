@@ -32,6 +32,9 @@ Options
 
 Changelog
 ---------
+ - 1.5.3 added support for youtube html5 code
+   added missing commas
+
  - 1.5.2 added support for gametrailers.com, myvideo.de, collegehumor.com, sevenload.com
  
  - 1.5.1 added support for smotri.com, vkontakte.ru(hash needed), rutube.ru, video.mail.ru, video.qip.ru
