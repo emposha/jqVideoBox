@@ -75,6 +75,11 @@ jQuery( function ($) {
             path = 'http://i2.ytimg.com/vi/'+videoId[1]+'/default.jpg';
             break;
           
+          case 'youtu.be':
+            var videoId = href.split('=');
+            path = 'http://i2.ytimg.com/vi/'+videoId[3]+'/default.jpg';
+            break;
+            
           case 'metacafe':
             var videoId = href.split('/');
             path = 'http://gen.metacafe.com/thumb/'+videoId[4]+'/0/0/0/0/'+videoId[5]+'.jpg';
@@ -125,6 +130,9 @@ jQuery( function ($) {
         var type = '';
         if (href.match(/youtube\.com\/watch/i)) {
           type = 'youtube';
+        }
+        else if (href.match(/youtu\.be/i)) {
+          type = 'youtu.be';
         }
         else if (href.match(/metacafe\.com\/watch/i)) {
           type = 'metacafe';
@@ -210,7 +218,7 @@ jQuery( function ($) {
           }
         });
         var object = setup(href);
-        top = $(window).scrollTop() + (($(window).height() / 2) - (options.height / 2));
+        top = (($(window).height() / 2) - (options.height / 2));
         left= (($(window).width() / 2) - (options.width / 2));
         center.css({'top': top + 'px','left':  left + 'px','display': 'none','background': '#fff url(css/loading.gif) no-repeat center','height': options.contentsHeight,'width': options.contentsWidth});
         overlay.css('display','block').fadeTo("fast",options.defaultOverLayFade);
@@ -252,7 +260,6 @@ jQuery( function ($) {
           aDim = rel.match(/[0-9]+/g);
         }
         overlay.css({
-          'top': $(window).scrollTop()+'px',
           'height': $(window).height()+'px'
         });
         options.contentsWidth = (aDim && (aDim[0] > 0)) ? aDim[0] : options.width;
@@ -266,6 +273,12 @@ jQuery( function ($) {
               flash = false;
               var videoId = href.split('=');
               other = '<iframe frameborder="0" width="' + options.contentsWidth + '" height="' + options.contentsHeight + '" src="http://www.youtube.com/embed/' + videoId[1] + '"></iframe>';
+            break;
+          
+          case 'youtu.be':
+              flash = false;
+              var videoId = href.split('/');
+              other = '<iframe frameborder="0" width="' + options.contentsWidth + '" height="' + options.contentsHeight + '" src="http://www.youtube.com/embed/' + videoId[3] + '"></iframe>';
             break;
             
           case 'metacafe':
