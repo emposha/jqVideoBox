@@ -1,6 +1,6 @@
 ﻿/**
  jqVideoBox 1.5.3 is released under the MIT License <http://www.opensource.org/licenses/mit-license.php>
- - Jquery version required: 1.2.x - 1.6.0
+ - Jquery version required: 1.2.x - 1.6.x
  - SWFObject version required: v2.x
 */
 
@@ -188,6 +188,9 @@ jQuery( function ($) {
         else if (href.match(/sevenload\.com\/shows/i)) {
           type = 'sevenload';
         }
+        else if (href.match(/facebook\.com\/v/i)) {
+          type = 'facebook';
+        }
         else if (href.match(/\.mov/i)) {
           type = 'mov_file';
         }
@@ -269,6 +272,11 @@ jQuery( function ($) {
         var params = {'wmode': 'transparent'};
         var  type = getType(href);
         switch (type) {
+          case 'facebook':
+            flash = false;
+              var videoId = href.split('/');
+              other = '<iframe frameborder="0" width="' + options.contentsWidth + '" height="' + options.contentsHeight + '" src="http://www.facebook.com/v/' + videoId[4] + '"></iframe>';
+            break;
           case 'youtube':
               flash = false;
               var videoId = href.split('=');
