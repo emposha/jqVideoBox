@@ -188,8 +188,11 @@ jQuery( function ($) {
         else if (href.match(/sevenload\.com\/shows/i)) {
           type = 'sevenload';
         }
-        else if (href.match(/facebook\.com\/v/i)) {
+        else if (href.match(/facebook\.com\/v\//i)) {
           type = 'facebook';
+        }
+        else if (href.match(/facebook\.com\/video\/video\.php/i)) {
+          type = 'facebook-page';
         }
         else if (href.match(/\.mov/i)) {
           type = 'mov_file';
@@ -273,9 +276,16 @@ jQuery( function ($) {
         var  type = getType(href);
         switch (type) {
           case 'facebook':
+          case 'facebook-page':
             flash = false;
-              var videoId = href.split('/');
-              other = '<iframe frameborder="0" width="' + options.contentsWidth + '" height="' + options.contentsHeight + '" src="http://www.facebook.com/v/' + videoId[4] + '"></iframe>';
+              if (type == 'facebook-page') {
+                var videoId = href.split('=');
+                videoId = videoId[1];
+              } else {
+                var videoId = href.split('/');
+                videoId = videoId[4];
+              }
+              other = '<iframe frameborder="0" width="' + options.contentsWidth + '" height="' + options.contentsHeight + '" src="http://www.facebook.com/v/' + videoId + '"></iframe>';
             break;
           case 'youtube':
               flash = false;
