@@ -8,7 +8,7 @@ Main idea and concept mootools plugin videbox (http://videobox-lb.sourceforge.ne
 
 Requirements
 ------------
-Jquery version required: 1.2.x - 1.6.0
+Jquery version required: 1.6.x - 1.8.0
 
 SWFObject version required: v2.x
 
@@ -28,10 +28,14 @@ Options
  * getimage            - Get image from service
  * navigation          - Activate navigation
  * thumblin            - fetch thumbnails from thumbl.in service (getimage need to be active, activated by default) 
-
+ * thumb_width         - width of thumbnail file (default 100px)
+ * thumb_height        - height of thumbnail file (default 100px)
+ * play_icon           - display play icon (false by default) - experemental
 
 Changelog
 ---------
+ - 1.5.4 added width & height for thumbnails + play icon
+ 
  - 1.5.3 added support for youtube html5 code
    added missing commas
 
